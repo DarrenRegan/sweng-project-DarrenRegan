@@ -74,7 +74,7 @@ if RUBY_VERSION>='2.6.0'
         # hack to avoid MonitorMixin double-initialize error:
         @mon_mutex_owner_object_id = nil
         @mon_mutex = nil
-        initialize
+        #initialize
       end
     end
   else
