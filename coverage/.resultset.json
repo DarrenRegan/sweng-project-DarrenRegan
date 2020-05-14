@@ -1,0 +1,106 @@
+{
+  "Cucumber Features": {
+    "coverage": {
+      "/workspace/sweng-project-DarrenRegan/app/models/gamegenre.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/workspace/sweng-project-DarrenRegan/app/controllers/gamegenres_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          2,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null
+        ]
+      },
+      "/workspace/sweng-project-DarrenRegan/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          1,
+          null
+        ]
+      },
+      "/workspace/sweng-project-DarrenRegan/app/helpers/application_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      }
+    },
+    "timestamp": 1589491737
+  }
+}
