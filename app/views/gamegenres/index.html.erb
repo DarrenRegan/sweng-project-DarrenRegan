@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Gamegenres</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Difficulty</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @gamegenres.each do |gamegenre| %>
+      <tr>
+        <td><%= gamegenre.title %></td>
+        <td><%= gamegenre.difficulty %></td>
+        <td><%= gamegenre.description %></td>
+        <td><%= link_to 'Show', gamegenre %></td>
+        <td><%= link_to 'Edit', edit_gamegenre_path(gamegenre) %></td>
+        <td><%= link_to 'Destroy', gamegenre, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Gamegenre', new_gamegenre_path %>
