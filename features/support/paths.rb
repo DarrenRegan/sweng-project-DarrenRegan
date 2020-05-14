@@ -23,7 +23,11 @@ module NavigationHelpers
     #     user_profile_path(User.find_by_login($1))
     #From CA5
     when /^the edit page for "(.*)"$/i
-    edit_genre_path(Gamegenre.find_by_title($1))
+    edit_gamegenre_path(Gamegenre.find_by_title($1))
+
+
+
+    
     else
 
       begin
