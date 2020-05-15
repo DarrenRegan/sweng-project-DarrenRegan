@@ -63,6 +63,17 @@ class GamegenresController < ApplicationController
     end
   end
 
+    def search_genres
+    @gamegenre = Gamegenre.find(params[:id])
+
+    if @gamegenre.title.blank?
+        flash[:notice] = "'#{@gamegenre.title}' has no title info"
+        redirect_to gamegenres_path and return
+    end
+
+    @gamegenre = Gamegenre.where("title = (?) AND desc != (?)", @gamegenre.title, @movie.description)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_gamegenre
