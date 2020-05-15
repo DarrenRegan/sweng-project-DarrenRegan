@@ -4,7 +4,9 @@ class GamegenresController < ApplicationController
   # GET /gamegenres
   # GET /gamegenres.json
   def index
-    @gamegenres = Gamegenre.all
+    @header_classes = {'Title': '', 'Difficulty': '', 'Description': ''}
+    @header_classes[params[:sort]] = 'hilite'
+    @gamegenres = Gamegenre.all.order(params[:sort])
   end
 
   # GET /gamegenres/1

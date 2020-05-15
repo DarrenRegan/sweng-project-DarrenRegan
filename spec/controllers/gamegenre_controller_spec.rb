@@ -1,7 +1,8 @@
 require 'rails_helper'
+
 describe GamegenresController, type:'controller' do
 #https://github.com/gmit-sweng-20/ca5-bdd-tdd-cycle2-DarrenRegan/blob/master/rottenpotatoes/spec/controllers/movies_controller_spec.rb
-
+#https://relishapp.com/rspec/rspec-rails/v/2-1/docs/controller-specs/render-views
     describe 'GET index' do
 
         it 'should render the index template' do
@@ -9,6 +10,40 @@ describe GamegenresController, type:'controller' do
         expect(response).to render_template('index')
         end
     end
+#(:gamegenre).permit(:title, :difficulty, :description)
+    describe 'POST Create Genre' do
+        it 'creates a new genre' do
+        expect {post :create, gamegenre: { title: "Tester", :difficulty => 4, :description => "Testing Stuff"}
+        }.to change { Gamegenre.count }.by(1)
+        end
+    end
+
+# GET /gamegenres/1
+    describe 'GET show' do
+    it 'should find the genre' do
+        @gamegenre = Gamegenre.create(:id => 1, :title => "Fighting", difficulty: 2, description: "Focus on action on combat")
+        get :show, {:id =>  @gamegenre.id}
+        expect(Gamegenre.find("1")).to eq(@gamegenre)
+        end
+    end
+
+  # DELETE /gamegenres/1
+  # DELETE /gamegenres/1.json
+    describe 'DELETE Destroy' do
+
+        it 'deletes a genre' do
+            @gamegenre = Gamegenre.create(title: "Fighting", difficulty: 2, description: "Focus on action on combat")
+
+            expect { delete :destroy, id: 1}.to change(Gamegenre, :count).by(-1)
+        end
+
+        it 'should redirect to the genre page after deleting' do
+            @gamegenre = Gamegenre.create(title: "Fighting", difficulty: 2, description: "Focus on action on combat")
+
+            delete :destroy, id: 1
+            expect(response).to redirect_to("/gamegenres")
+        end
+     end 
 end #END
 
    #   describe '#navigation' do
