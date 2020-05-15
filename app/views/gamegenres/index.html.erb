@@ -20,7 +20,7 @@
         <td><%= gamegenre.description %></td>
         <td><%= link_to 'Show', gamegenre %></td>
         <td><%= link_to 'Edit', edit_gamegenre_path(gamegenre) %></td>
-        <td><%= link_to 'Destroy', gamegenre, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', gamegenre_path(gamegenre), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

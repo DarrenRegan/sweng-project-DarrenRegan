@@ -25,9 +25,9 @@ module NavigationHelpers
     when /^the edit page for "(.*)"$/i
     edit_gamegenre_path(Gamegenre.find_by_title($1))
 
+    when /^the show page for "(.*)"$/i
+    show_gamegenre_path(Gamegenre.find_by_title($1))
 
-
-    
     else
 
       begin

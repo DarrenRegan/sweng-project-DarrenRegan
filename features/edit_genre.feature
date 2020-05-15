@@ -24,10 +24,10 @@ Background: gamegenres correctly added to the database
 Scenario: User can navigate to edit a genre
     When I go to the homepage
     And I go to the Edit page for "Fighting"
-    Then I i should see "Editing Game Genre"
+    Then I should see "Editing Game Genre"
 
 Scenario: User can edit a genre
     When I am on the edit page for "Fighting"
     And I fill in "difficulty" with 2
     And I press "Update Gamegenre"
-    Then I should see "Gamegenre was successfully updated."
+    Then I should see "Gamegenre was successfully updated." 

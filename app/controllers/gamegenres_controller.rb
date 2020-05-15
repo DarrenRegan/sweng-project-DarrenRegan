@@ -10,6 +10,8 @@ class GamegenresController < ApplicationController
   # GET /gamegenres/1
   # GET /gamegenres/1.json
   def show
+    id = params[:id]
+    @gamegenre = Gamegenre.find(id)
   end
 
   # GET /gamegenres/new
