@@ -77,7 +77,7 @@ describe GamegenresController, type:'controller' do
         end
     end
 
-      describe '#navigation' do
+    describe '#navigation' do
         context "loading new genre view" do
             it "should direct to adding a game genre" do
                 get :new
@@ -86,43 +86,39 @@ describe GamegenresController, type:'controller' do
         end
     end
 
+    describe '#search' do
+        context "When specified genre has no info" do
+            it "should redirect to the genre page" do
+                @gamegenre = double("Genre", :id => 1, :title => "", difficulty: 2, description: "Focus on action on combat")
+            
+                allow(Gamegenre).to receive(:same_genre).and_return(@gamegenre)
+
+                allow(Gamegenre).to receive(:find).and_return(@gamegenre)
+                get :search_genres, {:id => 1}
+        
+                expect(response).to redirect_to ("/gamegenres")
+            end
+        end
+    end
+#@gamegenre = double("Genre", :id => 1, :title => "Fighting", :difficulty => 2, :description => "Focus on action on combat")
+     describe "search for genre" do
+        context "When genre is entered in" do
+            it "should find genre with the same title" do
+                @gamegenre = double("Genre", :id => 1, :title => "Fighting", :difficulty => 2, :description => "Focus on action on combat")
+                allow(Gamegenre).to receive(:same_genre).and_return(@gamegenre)
+
+                allow(Gamegenre).to receive(:find).and_return(@gamegenre)
+                get :search, {:search => "FPS"}
+
+                expect(response).to render_template('search')
+            end
+        end
+    end 
+    
+
 end #END
-
-
-
-
-#        context "When specified genre has no info" do
-#            it "should redirect to the genre page" do
-#                @gamegenre = double("Genre", :id => 1, :title => "", difficulty: 2, description: "Focus on action on combat")
-#            
-#                allow(Gamegenre).to receive(:same_genre).and_return(@gamegenre)
-#
-#                allow(Gamegenre).to receive(:find).and_return(@gamegenre)
-#                get :search_genres, {:id => 1}
-#        
-#                expect(response).to redirect_to ("/gamegenres")
-#            end
-#        end
-# context "When specified genre has no title" do
-#      it "should redirect to the home page" do
-#
- #       @fake_genre = double({title: 'TPFPS', difficulty: 3 , description: ''})
-#
- #       allow(Gamegenre).to receive(:find).and_return(@fake_genre)
- #       post :search_genres, {:id => 3}
- #       # Redirects to home page, shows error msg
-  #      expect(flash[:notice]).to eq("'TPFPS' has no title info")
-  #      expect(@response).should redirect_to gamegenres_path
-  #    end
- #   end
-
- #    context "When no genre exists" do
- #     it "should redirect to the home page" do
- #       @results = "No Genres with this Difficulty"
- #       allow(Gamegenre).to receive(:get_other_genres).and_return(@results)
- #       post :find_difficulty, {:difficulty '3'}
- #       # Redirects to home page
- #       expect(assigns(:gamegenre)).to eq(@results)
- #       expect(@response).should redirect_to gamegenres_path
- #     end
- #   end
+#@gamegenre = [
+#    double("Genre", :id => 1, :title => "Fighting", :difficulty => 2, :description => "Focus on action on combat"),
+#    double("Genre", :id => 2, :title => "Puzzle", :difficulty => 5, :description => "Requires player to solve a problem to advance"),
+#    double("Genre", :id => 3, :title => "FPS", :difficulty => 5, :description => "Use weapons to engage in action, from the characters viewpoint")             
+#]

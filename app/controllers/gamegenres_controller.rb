@@ -87,7 +87,7 @@ class GamegenresController < ApplicationController
       flash[:notice] = "Empty Search add a genre"
       redirect_to ("/gamegenres")
     else 
-        @gamegenres = Gamegenre.same_genre(@gamegenre.title)
+        @gamegenres = Gamegenre.same_genre(@gamegenre)
     end
   end 
 
