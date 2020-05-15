@@ -97,3 +97,12 @@ By **11pm on Friday May 15th** you are required to:
 - ensure that all of your code is pushed to your repository on GitHub.
 
 (note that submitting a zip file of your code to Moodle **is not necessary**. GitHub Classroom is being used to manage this assignment, and its tools allow me full access to your code.
+
+## Project Overview
+
+A application to create a list of Game Genres
+
+My application contains full CRUD operations GET, POST, PUT, DELETE
+Contains Additional Feature: Search / Search by Genre/Title on the home page
+Code Coverage ended at 85.71%
+Cloud Deploymenty - Heroku URL: https://pacific-peak-28651.herokuapp.com/
