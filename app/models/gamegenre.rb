@@ -7,4 +7,25 @@ class Gamegenre < ActiveRecord::Base
         return @difficulty
         end
     end
+
+    def self.same_difficulty difficulty
+    Gamegenre.where(:difficulty => difficulty)
+    end
+
+    def self.same_genre title
+    Gamegenre.where(:title => title)
+    end
+
+    def self.search(search)
+        if search
+            gamegenre = Gamegenre.find_by(title: search)
+            if gamegenre 
+                self.where(id: gamegenre)
+            else
+                Gamegenre.all
+            end
+        else
+            Gamegenre.all
+        end
+    end
 end

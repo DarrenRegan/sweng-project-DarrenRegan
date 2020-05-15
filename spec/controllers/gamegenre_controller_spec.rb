@@ -43,30 +43,66 @@ describe GamegenresController, type:'controller' do
             delete :destroy, id: 1
             expect(response).to redirect_to("/gamegenres")
         end
-     end 
+     end
+
+  # PATCH/PUT /gamegenres/1
+  # PATCH/PUT /gamegenres/1.json
+    describe 'PUT update' do
+        it 'updates an existing genre' do
+            @gamegenre = Gamegenre.create(title: "Fighting", difficulty: 2, description: "Focus on action on combat")
+
+            allow(Gamegenre).to receive(:find).with('1').and_return(@gamegenre)
+            allow(Gamegenre).to receive(:update_attributes).with(:gamegenre)
+
+            get :update, {:id => '1', :gamegenre => {:name =>"Fighting"}}
+            expect(@gamegenre.title).to eql('Fighting')
+
+            expect(response).to redirect_to gamegenre_path(@gamegenre)
+        end
+    end
+
+  # GET /gamegenres/1/edit
+    describe 'GET edit' do
+        it 'should find the genre' do
+            @gamegenre = Gamegenre.create(title: "Fighting", difficulty: 2, description: "Focus on action on combat")
+            allow(Gamegenre).to receive(:find).with('1').and_return(@gamegenre)
+            get :edit, {:id => @gamegenre.id}
+
+        end
+        it 'should render the edit template' do
+            @gamegenre = Gamegenre.create(:id => 1, :title => "Fighting", difficulty: 2, description: "Focus on action on combat")
+            allow(Gamegenre).to receive(:find).with('1').and_return(@gamegenre)
+            get :edit, {:id => @gamegenre.id}
+            expect(response).to render_template('edit')
+        end
+    end
+
+      describe '#navigation' do
+        context "loading new genre view" do
+            it "should direct to adding a game genre" do
+                get :new
+                expect(@response).to render_template("new")
+            end
+        end
+    end
+
 end #END
 
-   #   describe '#navigation' do
-#        context "loading new genre view" do
- #           it "should direct to adding a game genre" do
- #               get :new
-#                expect(@response).to render_template("new")
+
+
+
+#        context "When specified genre has no info" do
+#            it "should redirect to the genre page" do
+#                @gamegenre = double("Genre", :id => 1, :title => "", difficulty: 2, description: "Focus on action on combat")
+#            
+#                allow(Gamegenre).to receive(:same_genre).and_return(@gamegenre)
+#
+#                allow(Gamegenre).to receive(:find).and_return(@gamegenre)
+#                get :search_genres, {:id => 1}
+#        
+#                expect(response).to redirect_to ("/gamegenres")
 #            end
- #       end
-#    end
-
-    #context "When no genre exists" do
-      #it "should redirect to the home page" do
-        #@results = "No Genres with this Difficulty"
-       # allow(Gamegenre).to receive(:get_other_genres).and_return(@results)
-      #  post :find_difficulty, {:difficulty => {:Difficulty =>'3'}}
-     #   # Redirects to home page
-    #    expect(assigns(:gamegenre)).to eq(@results)
-   #     expect(@response).should redirect_to gamegenres_path
-  #    end
- #   end
-#end
-
+#        end
 # context "When specified genre has no title" do
 #      it "should redirect to the home page" do
 #
@@ -78,4 +114,15 @@ end #END
   #      expect(flash[:notice]).to eq("'TPFPS' has no title info")
   #      expect(@response).should redirect_to gamegenres_path
   #    end
+ #   end
+
+ #    context "When no genre exists" do
+ #     it "should redirect to the home page" do
+ #       @results = "No Genres with this Difficulty"
+ #       allow(Gamegenre).to receive(:get_other_genres).and_return(@results)
+ #       post :find_difficulty, {:difficulty '3'}
+ #       # Redirects to home page
+ #       expect(assigns(:gamegenre)).to eq(@results)
+ #       expect(@response).should redirect_to gamegenres_path
+ #     end
  #   end

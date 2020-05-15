@@ -1,0 +1,23 @@
+
+<h1>Search Gamegenres</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Difficulty</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @gamegenres.each do |gamegenre| %>
+      <tr>
+        <td><%= gamegenre.title %></td>
+        <td><%= gamegenre.difficulty %></td>
+        <td><%= gamegenre.description %></td>
+        <td><%= link_to 'Show', gamegenre %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

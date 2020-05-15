@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :gamegenres
   resources :gamegenres
   root :to => redirect('/gamegenres')
+  get '/gamegenres/:id', to: 'gamegenres#search_genres', as: 'search_genres'
+  get '/search' => 'gamegenres#search', :as => 'search_page'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

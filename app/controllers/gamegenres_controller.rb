@@ -7,6 +7,7 @@ class GamegenresController < ApplicationController
     @header_classes = {'Title': '', 'Difficulty': '', 'Description': ''}
     @header_classes[params[:sort]] = 'hilite'
     @gamegenres = Gamegenre.all.order(params[:sort])
+    @gamegenres = Gamegenre.search(params[:search])
   end
 
   # GET /gamegenres/1
@@ -65,16 +66,30 @@ class GamegenresController < ApplicationController
     end
   end
 
-    def search_genres
+  def search_genres
     @gamegenre = Gamegenre.find(params[:id])
 
-    if @gamegenre.title.blank?
+    if @gamegenre.title.empty?
+        @gamegenres = Array.new
         flash[:notice] = "'#{@gamegenre.title}' has no title info"
-        redirect_to gamegenres_path and return
+        redirect_to ("/gamegenres") and return
+    else
+        @gamegenres = Gamegenre.same_genre(@gamegenre.title)
     end
-
-    @gamegenre = Gamegenre.where("title = (?) AND desc != (?)", @gamegenre.title, @movie.description)
   end
+
+  def search  
+    @parameter = params[:search]
+
+    # check if it is an empty string
+    if @gamegenre.eql? [""] or @parameter.nil?
+      @gamegenres = Array.new
+      flash[:notice] = "Empty Search add a genre"
+      redirect_to ("/gamegenres")
+    else 
+        @gamegenres = Gamegenre.same_genre(@gamegenre.title)
+    end
+  end 
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -84,6 +99,6 @@ class GamegenresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gamegenre_params
-      params.require(:gamegenre).permit(:title, :difficulty, :description)
+      params.require(:gamegenre).permit(:title, :difficulty, :description, :search)
     end
 end

@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Gamegenres</h1>
-
 <table>
   <thead>
     <tr>
@@ -25,7 +24,23 @@
     <% end %>
   </tbody>
 </table>
+<br>
+<%= link_to 'New Gamegenre', new_gamegenre_path %>
+<br>
+<br>
+<br>
+<h4> Search By Genre:</h4>
+    <%= form_tag(gamegenres_path, :method => :get) do %>
+        <%= text_field_tag(:search, params[:search]) %>
+        <%= submit_tag ("Search") %>
+    <% end %>
 
+    <% @gamegenres.each do |gamegenre| %>
+        <ul>
+            <li><%= link_to gamegenre.title, gamegenre_path(gamegenre) %></li><br>
+        </ul>
+    <% end %>
 <br>
 
-<%= link_to 'New Gamegenre', new_gamegenre_path %>
+
+
