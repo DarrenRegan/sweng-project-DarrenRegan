@@ -8,10 +8,6 @@ class Gamegenre < ActiveRecord::Base
         end
     end
 
-    def self.same_difficulty difficulty
-    Gamegenre.where(:difficulty => difficulty)
-    end
-
     def self.same_genre title
     Gamegenre.where(:title => title)
     end

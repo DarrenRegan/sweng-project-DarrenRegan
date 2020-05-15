@@ -113,12 +113,18 @@ describe GamegenresController, type:'controller' do
                 expect(response).to render_template('search')
             end
         end
+        context "When genre is not entered" do
+            it "should redirect back to genre page" do
+                @gamegenre = double("Genre", :id => 1, :title => "Fighting", :difficulty => 2, :description => "Focus on action on combat")
+                allow(Gamegenre).to receive(:same_genre).and_return(@gamegenre)
+
+                allow(Gamegenre).to receive(:find).and_return(@gamegenre)
+                get :search, {:title => ''}
+
+                expect(response).to redirect_to ("/gamegenres")
+            end
+        end
     end 
     
 
 end #END
-#@gamegenre = [
-#    double("Genre", :id => 1, :title => "Fighting", :difficulty => 2, :description => "Focus on action on combat"),
-#    double("Genre", :id => 2, :title => "Puzzle", :difficulty => 5, :description => "Requires player to solve a problem to advance"),
-#    double("Genre", :id => 3, :title => "FPS", :difficulty => 5, :description => "Use weapons to engage in action, from the characters viewpoint")             
-#]
