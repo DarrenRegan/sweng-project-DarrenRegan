@@ -15,7 +15,7 @@ module NavigationHelpers
 
     when /^the (Game Genres )?home\s?page$/ then '/gamegenres'
     when /^the gamegenres page$/ then '/gamegenres'
-
+    when /^the newgenres page$/ then new_gamegenre_path
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
@@ -27,6 +27,7 @@ module NavigationHelpers
 
     when /^the show page for "(.*)"$/i
     show_gamegenre_path(Gamegenre.find_by_title($1))
+
 
     else
 
